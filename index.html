@@ -68,7 +68,7 @@
     <div class="phs-modal-content" role="document">
       <button class="phs-modal-close" id="closeOrderPromptModal" aria-label="Close form">&times;</button>
       <h2>Order Your Prompt</h2>
-      <form class="phs-form phs-order-form" action="https://formspree.io/f/mrbkznkp?format=markdown" method="POST" autocomplete="on" accept-charset="UTF-8">
+      <form class="phs-form phs-order-form" id="orderPromptForm" autocomplete="on" accept-charset="UTF-8">
         <input type="hidden" name="_format" value="markdown">
         <input type="hidden" name="_next" value="thankyou.html">
         <div class="phs-form-group">
@@ -303,7 +303,7 @@
   <!-- Contact Us Section -->
   <section class="phs-section phs-contact" id="contact">
     <h2 class="phs-section-title">Get In Touch</h2>
-    <form id="contactForm" class="phs-contact-form" method="POST" action="https://formspree.io/f/mrbkznkp">
+    <form id="contactForm" class="phs-contact-form">
         <div class="phs-form-group">
           <label for="contactName">Name</label>
           <input type="text" id="contactName" name="name" required>
@@ -333,6 +333,7 @@
           <div class="phs-prompt-short">Banking Insights</div>
           <div class="phs-prompt-full">Precision Banking Insights & Hyper-Personalized Client Engagement Suite</div>
           <div class="phs-prompt-desc">Unlock actionable banking analytics and deliver tailored client experiences with this advanced prompt suite.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="banking-insights">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -341,6 +342,7 @@
           <div class="phs-prompt-short">German Curriculum Planner</div>
           <div class="phs-prompt-full">Structured German Curriculum Planner for Educational Excellence</div>
           <div class="phs-prompt-desc">Design comprehensive German language curricula for any level or institution with ease.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="german-curriculum">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -349,6 +351,7 @@
           <div class="phs-prompt-short">Business Concierge</div>
           <div class="phs-prompt-full">Executive Business Concierge: Legal & Administrative AI Assistant</div>
           <div class="phs-prompt-desc">Streamline your daily operations and boost productivity with this versatile AI assistant.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="business-concierge">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -357,6 +360,7 @@
           <div class="phs-prompt-short">Travel Architect</div>
           <div class="phs-prompt-full">Elite Travel Architect: Tailored Itineraries & Destination Intelligence</div>
           <div class="phs-prompt-desc">Create personalized travel plans and discover hidden gems for any destination.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="travel-architect">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -365,6 +369,7 @@
           <div class="phs-prompt-short">Lab Analyst</div>
           <div class="phs-prompt-full">AI Laboratory Analyst: Scientific Research Design & Data Structuring</div>
           <div class="phs-prompt-desc">Accelerate research with structured experiment design and data analysis prompts.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="lab-analyst">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -373,6 +378,7 @@
           <div class="phs-prompt-short">Market Intelligence</div>
           <div class="phs-prompt-full">Strategic Market Intelligence: Sales & Marketing Optimization Engine</div>
           <div class="phs-prompt-desc">Gain actionable insights for sales and marketing strategies in any industry.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="market-intelligence">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -381,6 +387,7 @@
           <div class="phs-prompt-short">Logistics Hub</div>
           <div class="phs-prompt-full">Smart Logistics Hub: AI-Driven Inventory & Dispatch Orchestration</div>
           <div class="phs-prompt-desc">Optimize inventory and dispatch with intelligent, automated logistics prompts.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="logistics-hub">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -389,6 +396,7 @@
           <div class="phs-prompt-short">Production Optimizer</div>
           <div class="phs-prompt-full">Shift-Aware Production Flow Optimizer: Material & Workforce Planner</div>
           <div class="phs-prompt-desc">Plan and optimize production flows, materials, and workforce allocation.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="production-optimizer">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -397,6 +405,7 @@
           <div class="phs-prompt-short">Retail Dynamics AI</div>
           <div class="phs-prompt-full">Retail Dynamics Engine: Real-Time Inventory Refill & Shelf Strategy AI</div>
           <div class="phs-prompt-desc">Automate inventory refills and optimize shelf strategies for retail success.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="retail-dynamics-ai">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -405,6 +414,7 @@
           <div class="phs-prompt-short">PharmaScope AI</div>
           <div class="phs-prompt-full">PharmaScope AI: Drug Market Entry & Competitive Intelligence Platform</div>
           <div class="phs-prompt-desc">Navigate drug market entry and competition with targeted AI insights.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="pharmascope-ai">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -413,6 +423,7 @@
           <div class="phs-prompt-short">Call Center Monitor</div>
           <div class="phs-prompt-full">Conversational Quality Monitor: AI Call Center Interaction Evaluator</div>
           <div class="phs-prompt-desc">Evaluate and improve call center interactions with AI-driven analysis.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="call-center-monitor">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -421,6 +432,7 @@
           <div class="phs-prompt-short">Finance Strategist</div>
           <div class="phs-prompt-full">Intelligent Personal Finance Strategist (Secure & User-Centric)</div>
           <div class="phs-prompt-desc">Take control of personal finances with secure, user-focused AI prompts.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="finance-strategist">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -429,6 +441,7 @@
           <div class="phs-prompt-short">Task Orchestrator</div>
           <div class="phs-prompt-full">Interactive Task Orchestrator: Smart To-Do & Progress Dashboard</div>
           <div class="phs-prompt-desc">Organize tasks and track progress with interactive AI dashboards.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="task-orchestrator">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -437,6 +450,7 @@
           <div class="phs-prompt-short">Language Institute Manager</div>
           <div class="phs-prompt-full">AI-Powered Language Institute Manager: Program & Student Operations</div>
           <div class="phs-prompt-desc">Manage language programs and student operations with AI efficiency.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="language-institute-manager">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -445,6 +459,7 @@
           <div class="phs-prompt-short">LabChain Monitor</div>
           <div class="phs-prompt-full">LabChain Monitor: Real-Time Sample Flow & Analytical Reporting AI</div>
           <div class="phs-prompt-desc">Monitor lab sample flows and generate analytical reports in real time.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="labchain-monitor">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -453,6 +468,7 @@
           <div class="phs-prompt-short">Wellness Architect</div>
           <div class="phs-prompt-full">Wellness Architect: Client-Centric Fitness Needs & Program Designer</div>
           <div class="phs-prompt-desc">Design personalized fitness and wellness programs for any client.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="wellness-architect">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -461,6 +477,7 @@
           <div class="phs-prompt-short">Investigation Engine</div>
           <div class="phs-prompt-full">Deep Investigation Engine: AI for Journalistic Research & Analysis</div>
           <div class="phs-prompt-desc">Empower research and analysis for journalism and investigations.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="investigation-engine">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -469,6 +486,7 @@
           <div class="phs-prompt-short">Paper Co-Author</div>
           <div class="phs-prompt-full">Scholarly Paper Co-Author: Research Structuring & Academic Writing AI</div>
           <div class="phs-prompt-desc">Collaborate on academic writing and research structuring with AI.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="paper-coauthor">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -477,6 +495,7 @@
           <div class="phs-prompt-short">Content Generator</div>
           <div class="phs-prompt-full">Precision Content Generator: Audience-Tuned Writing Assistant</div>
           <div class="phs-prompt-desc">Generate tailored content for any audience or platform.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="content-generator">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -485,6 +504,7 @@
           <div class="phs-prompt-short">Curriculum Craft AI</div>
           <div class="phs-prompt-full">Curriculum Craft AI: Structured Textbook Writing Assistant</div>
           <div class="phs-prompt-desc">Assist in writing and structuring textbooks and curricula with AI.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="curriculum-craft-ai">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -493,6 +513,7 @@
           <div class="phs-prompt-short">Visual Generator</div>
           <div class="phs-prompt-full">Visual Intelligence Generator: Conceptual & Commercial Image Creator</div>
           <div class="phs-prompt-desc">Create conceptual and commercial images with AI-driven prompts.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="visual-generator">Details</button>
         </div>
       </div>
       <div class="phs-prompt-card">
@@ -501,6 +522,7 @@
           <div class="phs-prompt-short">Midjourney Muse</div>
           <div class="phs-prompt-full">Midjourney Muse: Therapeutic Art Prompt Generator for AI Expression</div>
           <div class="phs-prompt-desc">Inspire creative and therapeutic art with AI-generated prompts.</div>
+          <button class="phs-btn phs-prompt-details-btn" data-prompt="midjourney-muse">Details</button>
         </div>
       </div>
     </div>
@@ -586,6 +608,37 @@
 
   <!-- Scroll to Top Button -->
   <button id="phs-scroll-top" aria-label="Scroll to top" style="display:none;" tabindex="0">↑</button>
+
+  <!-- Prompt Details Modal -->
+  <div class="phs-modal" id="phsPromptDetailsModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="phs-modal-overlay" tabindex="-1"></div>
+    <div class="phs-modal-content phs-prompt-details-modal" role="document">
+      <button class="phs-modal-close" id="closePromptDetailsModal" aria-label="Close details">&times;</button>
+      <div class="phs-prompt-details-flex">
+        <div class="phs-prompt-details-img-wrap">
+          <img id="phsPromptDetailsImg" src="" alt="Prompt Illustration" class="phs-prompt-details-img" loading="lazy">
+        </div>
+        <div class="phs-prompt-details-info">
+          <h2 id="phsPromptDetailsTitle"></h2>
+          <div id="phsPromptDetailsShort" class="phs-prompt-details-short"></div>
+          <div id="phsPromptDetailsDesc" class="phs-prompt-details-desc"></div>
+          <div class="phs-prompt-details-struct">
+            <span class="phs-prompt-details-struct-label">Prompt Structure Example:</span>
+            <pre id="phsPromptDetailsStruct" class="phs-prompt-details-struct-pre"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      // IMPORTANT: Using your actual EmailJS public key
+      emailjs.init('YvejikswNstsWcWCe');
+    })();
+  </script>
 
   <script src="script.js"></script>
 </body>
