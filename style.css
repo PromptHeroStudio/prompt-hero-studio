@@ -605,10 +605,32 @@ html, body {
 .phs-footer-right {
   flex: 0 0 auto;
   text-align: right;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
-.phs-footer-right svg {
-  display: inline-block;
-  vertical-align: middle;
+.phs-footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+.phs-footer-social svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.phs-footer-social:hover, .phs-footer-social:focus {
+  background: var(--white);
+}
+.phs-footer-social:hover svg path, .phs-footer-social:focus svg path {
+  fill: var(--black);
 }
 
 /* Error State */
