@@ -1,0 +1,21 @@
+{
+  "name": "Prompt Hero Studio",
+  "short_name": "PromptHero",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#000",
+  "description": "Expert prompt engineering, custom AI prompts, eBooks, and consulting for business and creative excellence.",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

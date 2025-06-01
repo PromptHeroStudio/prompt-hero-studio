@@ -102,4 +102,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Prompts Details Modal (skeleton for all 22 prompts)
   // ...implement modal logic for prompt details as needed...
+
+  // Scroll to top button logic
+  const scrollTopBtn = document.getElementById('phs-scroll-top');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 300) {
+      scrollTopBtn.style.display = 'flex';
+    } else {
+      scrollTopBtn.style.display = 'none';
+    }
+  });
+  scrollTopBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollTopBtn.blur();
+  });
+  scrollTopBtn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollTopBtn.blur();
+    }
+  });
+
+  // Enhance form success messages for accessibility
+  if (document.getElementById('orderPromptSuccess')) {
+    document.getElementById('orderPromptSuccess').setAttribute('aria-live', 'polite');
+  }
+  if (document.getElementById('contactSuccess')) {
+    document.getElementById('contactSuccess').setAttribute('aria-live', 'polite');
+  }
 });

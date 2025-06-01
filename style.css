@@ -632,6 +632,10 @@ html, body {
 .phs-footer-social:hover svg path, .phs-footer-social:focus svg path {
   fill: var(--black);
 }
+.phs-footer-social:focus {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
 
 /* Error State */
 .phs-input-error {
@@ -639,31 +643,44 @@ html, body {
   background: #fff0f0 !important;
 }
 
-@media (max-width: 900px) {
-  .phs-services-grid, .phs-books-grid, .phs-prompts-grid {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .phs-hero-inner {
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem 1rem 1rem 1rem;
-    align-items: stretch;
-  }
-  .phs-hero-right {
-    align-items: center;
-    margin-top: 0;
-  }
+/* Lazy loading for images */
+img:not(.phs-logo):not(.phs-favicon) {
+  loading: lazy;
+}
+
+/* Scroll to top button */
+#phs-scroll-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 3000;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  opacity: 0.85;
+  transition: opacity 0.2s, background 0.2s;
+}
+#phs-scroll-top:hover, #phs-scroll-top:focus {
+  opacity: 1;
+  background: var(--white);
+  color: var(--black);
+  outline: 2px solid var(--black);
 }
 @media (max-width: 600px) {
-  .phs-section {
-    padding: 2rem 0.5rem 1rem 0.5rem;
-  }
-  .phs-section-title {
-    font-size: 1.3rem;
-  }
-  .phs-about-text {
-    padding: 1rem;
+  #phs-scroll-top {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
   }
 }
