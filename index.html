@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Hero Studio</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="phs-header" role="banner">
+    <div class="phs-header-inner">
+      <img src="favicon.png" alt="Prompt Hero Studio Favicon" class="phs-favicon" width="32" height="32">
+      <nav class="phs-nav" aria-label="Main Navigation">
+        <ul>
+          <li><a href="#prompts">Prompts</a></li>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="phs-hero" id="hero">
+    <div class="phs-hero-inner">
+      <div class="phs-hero-left">
+        <h1>Expert Prompt Engineering</h1>
+        <p class="phs-hero-sub">Elevate your AI interactions with precision-crafted prompts designed for business optimization and creative excellence.</p>
+        <div class="phs-hero-ctas">
+          <button class="phs-btn phs-btn-primary" id="orderPromptBtn">Order Your Prompt</button>
+          <button class="phs-btn phs-btn-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Custom Requests</button>
+          <button class="phs-btn phs-btn-secondary" onclick="window.location.href='#books'">Buy eBook</button>
+          <button class="phs-btn phs-btn-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+        </div>
+      </div>
+      <div class="phs-hero-right">
+        <img src="logo.png" alt="Prompt Hero Studio Logo" class="phs-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Your Prompt Modal (hidden by default) -->
+  <div class="phs-modal" id="orderPromptModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="phs-modal-overlay" tabindex="-1"></div>
+    <div class="phs-modal-content" role="document">
+      <button class="phs-modal-close" id="closeOrderPromptModal" aria-label="Close form">&times;</button>
+      <h2>Order Your Prompt</h2>
+      <form class="phs-form phs-order-form" action="https://formspree.io/f/mrbkznkp?format=markdown" method="POST" autocomplete="on" accept-charset="UTF-8">
+        <input type="hidden" name="_format" value="markdown">
+        <input type="hidden" name="_next" value="thankyou.html">
+        <div class="phs-form-group">
+          <label for="orderFullName">Full Name</label>
+          <input type="text" id="orderFullName" name="Full Name" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderEmail">Email Address</label>
+          <input type="email" id="orderEmail" name="Email" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderCompany">Company/Organization (if applicable)</label>
+          <input type="text" id="orderCompany" name="Company">
+        </div>
+        <div class="phs-form-group">
+          <label for="orderProjectTitle">Project Title / Name for this Prompt Request</label>
+          <input type="text" id="orderProjectTitle" name="Project Title" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderProjectDesc">Briefly describe the project or the main purpose of the prompt you need</label>
+          <textarea id="orderProjectDesc" name="Project Description" required></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderGoal">What is the primary goal of the AI prompt?</label>
+          <textarea id="orderGoal" name="Primary Goal" required></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderTasks">What specific task(s) should the AI perform?</label>
+          <textarea id="orderTasks" name="AI Tasks" required></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderUser">Who will use the prompt (you, your team, clients, students, etc.)?</label>
+          <input type="text" id="orderUser" name="Prompt User" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderAudience">Who is the target audience for the AI-generated output?</label>
+          <input type="text" id="orderAudience" name="Target Audience" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderPlatform">Which AI platform is the prompt intended for?</label>
+          <input type="text" id="orderPlatform" name="AI Platform" placeholder="e.g., GPT-4, Claude 3, Midjourney" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderOutputStructure">Describe the desired output structure</label>
+          <textarea id="orderOutputStructure" name="Output Structure" required></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderUserInput">What will users provide to the AI each time they use the prompt?</label>
+          <textarea id="orderUserInput" name="User Input" required></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label>Tone/Style (choose all that apply):</label>
+          <div class="phs-checkbox-group">
+            <label><input type="checkbox" name="Tone: Professional" value="Yes"> Professional</label>
+            <label><input type="checkbox" name="Tone: Conversational" value="Yes"> Conversational</label>
+            <label><input type="checkbox" name="Tone: Friendly" value="Yes"> Friendly</label>
+            <label><input type="checkbox" name="Tone: Formal" value="Yes"> Formal</label>
+            <label><input type="checkbox" name="Tone: Persuasive" value="Yes"> Persuasive</label>
+            <label><input type="checkbox" name="Tone: Other" value="Yes"> Other: <input type="text" name="Tone: Other (specify)" placeholder="Specify"></label>
+          </div>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderLength">Desired length or level of detail?</label>
+          <textarea id="orderLength" name="Length/Detail" required></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label>Should the output follow any specific branding or style guide?</label>
+          <div class="phs-radio-group">
+            <label><input type="radio" name="Branding Guide" value="Yes"> Yes</label>
+            <label><input type="radio" name="Branding Guide" value="No"> No</label>
+          </div>
+          <textarea name="Branding Details" placeholder="If yes, provide details"></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderFormat">Preferred output format</label>
+          <input type="text" id="orderFormat" name="Output Format" placeholder="e.g., text, JSON, Markdown" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderKeywords">Do you have specific keywords, constraints, or terminology that must be used?</label>
+          <textarea id="orderKeywords" name="Keywords/Constraints"></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderAvoid">Topics the AI should strictly avoid?</label>
+          <textarea id="orderAvoid" name="Topics to Avoid"></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderPersona">Do you want the AI to take on a specific role or persona?</label>
+          <textarea id="orderPersona" name="AI Persona"></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderExamples">Provide 1–3 example input/output pairs (if applicable)</label>
+          <textarea id="orderExamples" name="Example Input/Output"></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label>Would you like a Product Requirement Document (PRD) with step-by-step usage instructions?</label>
+          <div class="phs-radio-group">
+            <label><input type="radio" name="PRD" value="Yes"> Yes</label>
+            <label><input type="radio" name="PRD" value="No"> No</label>
+          </div>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderDeadline">Deadline or delivery preference (if urgent):</label>
+          <input type="text" id="orderDeadline" name="Deadline" placeholder="Standard delivery is 24–48 hours">
+        </div>
+        <div class="phs-form-group">
+          <label>Would you like to schedule a short call or chat for clarification?</label>
+          <div class="phs-radio-group">
+            <label><input type="radio" name="Schedule Call" value="Yes"> Yes</label>
+            <label><input type="radio" name="Schedule Call" value="No"> No</label>
+          </div>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderContext">Any additional context, links, or materials we should know about?</label>
+          <textarea id="orderContext" name="Additional Context"></textarea>
+        </div>
+        <div class="phs-form-group">
+          <label for="orderReferences">You can include references, previous examples, writing samples, documents, or project briefs here.</label>
+          <textarea id="orderReferences" name="References"></textarea>
+        </div>
+        <button type="submit" class="phs-btn phs-btn-primary phs-form-submit">Submit Request &amp; Proceed to Payment</button>
+      </form>
+      <div class="phs-form-success" id="orderPromptSuccess" style="display:none;">Thank you for your trust! We have successfully received your request.</div>
+    </div>
+  </div>
+
+  <!-- Main Content Sections (Services, Testimonials, FAQ, Contact, Prompts, Books, About, Footer) -->
+
+  <!-- Our Services Section -->
+  <section class="phs-section phs-services" id="services">
+    <h2 class="phs-section-title">Our Services</h2>
+    <div class="phs-services-grid">
+      <div class="phs-service-card">
+        <div class="phs-service-title">Custom Prompts</div>
+        <div class="phs-service-desc">Tailored AI instructions for your specific needs</div>
+        <div class="phs-service-price">Price: 40.00 EUR</div>
+        <button class="phs-btn phs-btn-primary" onclick="document.getElementById('orderPromptBtn').click()">Order Your Prompt</button>
+      </div>
+      <div class="phs-service-card">
+        <div class="phs-service-title">E-Books</div>
+        <div class="phs-service-desc">Expert guides on prompt engineering and AI</div>
+        <div class="phs-service-powered">Powered by <img src="logo.png" alt="Logo" class="phs-service-logo"></div>
+        <div class="phs-service-price">Price per Book: 9.00 EUR</div>
+        <button class="phs-btn phs-btn-secondary" onclick="window.location.href='#books'">Buy eBook</button>
+      </div>
+      <div class="phs-service-card">
+        <div class="phs-service-title">Custom Requests</div>
+        <div class="phs-service-desc">Complex or specialized prompt engineering needs</div>
+        <button class="phs-btn phs-btn-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Custom Requests</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="phs-section phs-testimonials" id="testimonials">
+    <h2 class="phs-section-title">🌟 Testimonials</h2>
+    <div class="phs-testimonials-list">
+      <blockquote>
+        <p>"The prompts from Prompt Hero Studio reshaped how we approach creative ideation. What used to take days now takes minutes—with better results."</p>
+        <footer>Julia van Heerden<br><span>Chief Marketing Officer, FinTech Horizon (Amsterdam, NL)</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>"Their domain-specific prompts are astonishingly accurate. It's like having a highly trained assistant fine-tuned for our exact industry challenges."</p>
+        <footer>Marcus Liu<br><span>AI Research Lead, NovaHealth Analytics (Singapore)</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>"We used Prompt Hero Studio to design training simulations with ChatGPT. Our employee engagement jumped by over 30% in just one quarter."</p>
+        <footer>Sara D. Thompson<br><span>Head of Learning & Development, Lumina Media Group (New York, USA)</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>"As an educator, I've seen dozens of tools, but nothing comes close to the precision and adaptability of these prompts for academic use."</p>
+        <footer>Dr. Emilio García<br><span>Professor of Digital Strategy, Universidad Complutense (Madrid, Spain)</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>"Prompt Hero Studio helped us scale our client communication and proposal generation. What impressed me most was how intuitively the prompts 'understood' our voice."</p>
+        <footer>Anita Šarić<br><span>Founder & CEO, GreenShift Consulting (Zagreb, Croatia)</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>"Creative blocks were destroying our timelines. The storytelling prompts from Prompt Hero Studio reignited our whole team’s creative spark."</p>
+        <footer>Nathan Cole<br><span>Senior Game Developer, PixelDepth Studios (Toronto, Canada)</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>"I was struggling to land clients—until I started using tailored prompts from Prompt Hero Studio. Now, I’m booked solid for the next 3 months."</p>
+        <footer>Lejla Hasanbegović<br><span>Freelance Virtual Assistant, Bosnia and Herzegovina</span></footer>
+      </blockquote>
+      <blockquote>
+        <p>"These prompts helped me prepare for job interviews and write standout applications. I landed a job at a company I thought was out of reach."</p>
+        <footer>Tomás Oliveira<br><span>Recent Graduate, Brazil</span></footer>
+      </blockquote>
+    </div>
+    <div class="phs-testimonials-conclude">💬 Real Stories, Real Impact</div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="phs-section phs-faq" id="faq">
+    <h2 class="phs-section-title">Frequently Asked Questions<br><span class="phs-faq-sub">Everything you need to know about our prompt engineering services.</span></h2>
+    <div class="phs-faq-list">
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">What exactly is prompt engineering?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>Prompt engineering is the process of designing and refining instructions for AI models to achieve specific, high-quality outputs tailored to your needs.</div>
+      </div>
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">How does the custom prompt ordering process work?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>Simply fill out our order form with your requirements. Our experts will craft your prompt and deliver it within 24–48 hours.</div>
+      </div>
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">Can you create prompts for any AI model?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>Yes, we support a wide range of AI platforms including GPT-4, Claude, Midjourney, and more.</div>
+      </div>
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">What information do I need to provide for a custom prompt?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>You'll be guided through all required details in our order form to ensure your prompt is perfectly tailored.</div>
+      </div>
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">Do you offer revisions if I'm not satisfied with the prompt?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>Yes, we offer one free revision to ensure your satisfaction.</div>
+      </div>
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">How are your e-books different from free prompt engineering resources?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>Our e-books are written by industry experts and provide actionable, advanced strategies not found in free resources.</div>
+      </div>
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">Can I use the prompts for commercial purposes?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>Yes, all prompts you purchase are licensed for both personal and commercial use.</div>
+      </div>
+      <div class="phs-faq-item">
+        <button class="phs-faq-question" aria-expanded="false">Do you offer bulk discounts for multiple prompts?<span class="phs-faq-icon">+</span></button>
+        <div class="phs-faq-answer" hidden>We do offer discounts for bulk orders. Please contact us for a custom quote.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="phs-section phs-contact" id="contact">
+    <h2 class="phs-section-title">Get In Touch</h2>
+    <form id="contactForm" class="phs-contact-form" method="POST" action="https://formspree.io/f/mrbkznkp">
+        <div class="phs-form-group">
+          <label for="contactName">Name</label>
+          <input type="text" id="contactName" name="name" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" name="email" required>
+        </div>
+        <div class="phs-form-group">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" name="message" required></textarea>
+        </div>
+        <button type="submit" class="phs-btn phs-btn-primary phs-form-submit">Send Message</button>
+      </form>
+      <div class="phs-form-success" id="contactSuccess" style="display:none;">Thank you! Your message has been sent.</div>
+  </section>
+
+  <!-- Prompts Section -->
+  <section class="phs-section phs-prompts" id="prompts">
+    <h2 class="phs-section-title">Prompts</h2>
+    <div class="phs-section-subtitle">Our Prompts<br>Explore our collection of expertly crafted prompts designed for specific use cases and AI models.</div>
+    <div class="phs-prompts-grid">
+      <!-- 22 prompt cards -->
+      <div class="phs-prompt-card">
+        <img src="prompt_banking_insights_image.png" alt="Banking Insights" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Banking Insights</div>
+          <div class="phs-prompt-full">Precision Banking Insights & Hyper-Personalized Client Engagement Suite</div>
+          <div class="phs-prompt-desc">Unlock actionable banking analytics and deliver tailored client experiences with this advanced prompt suite.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_german_curriculum_image.png" alt="German Curriculum Planner" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">German Curriculum Planner</div>
+          <div class="phs-prompt-full">Structured German Curriculum Planner for Educational Excellence</div>
+          <div class="phs-prompt-desc">Design comprehensive German language curricula for any level or institution with ease.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_business_concierge_image.png" alt="Business Concierge" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Business Concierge</div>
+          <div class="phs-prompt-full">Executive Business Concierge: Legal & Administrative AI Assistant</div>
+          <div class="phs-prompt-desc">Streamline your daily operations and boost productivity with this versatile AI assistant.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_travel_architect_image.png" alt="Travel Architect" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Travel Architect</div>
+          <div class="phs-prompt-full">Elite Travel Architect: Tailored Itineraries & Destination Intelligence</div>
+          <div class="phs-prompt-desc">Create personalized travel plans and discover hidden gems for any destination.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_lab_analyst_image.png" alt="Lab Analyst" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Lab Analyst</div>
+          <div class="phs-prompt-full">AI Laboratory Analyst: Scientific Research Design & Data Structuring</div>
+          <div class="phs-prompt-desc">Accelerate research with structured experiment design and data analysis prompts.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_market_intelligence_image.png" alt="Market Intelligence" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Market Intelligence</div>
+          <div class="phs-prompt-full">Strategic Market Intelligence: Sales & Marketing Optimization Engine</div>
+          <div class="phs-prompt-desc">Gain actionable insights for sales and marketing strategies in any industry.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_logistics_hub_image.png" alt="Logistics Hub" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Logistics Hub</div>
+          <div class="phs-prompt-full">Smart Logistics Hub: AI-Driven Inventory & Dispatch Orchestration</div>
+          <div class="phs-prompt-desc">Optimize inventory and dispatch with intelligent, automated logistics prompts.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_production_optimizer_image.png" alt="Production Optimizer" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Production Optimizer</div>
+          <div class="phs-prompt-full">Shift-Aware Production Flow Optimizer: Material & Workforce Planner</div>
+          <div class="phs-prompt-desc">Plan and optimize production flows, materials, and workforce allocation.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_retail_dynamics_ai_image.png" alt="Retail Dynamics AI" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Retail Dynamics AI</div>
+          <div class="phs-prompt-full">Retail Dynamics Engine: Real-Time Inventory Refill & Shelf Strategy AI</div>
+          <div class="phs-prompt-desc">Automate inventory refills and optimize shelf strategies for retail success.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_pharmascope_ai_image.png" alt="PharmaScope AI" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">PharmaScope AI</div>
+          <div class="phs-prompt-full">PharmaScope AI: Drug Market Entry & Competitive Intelligence Platform</div>
+          <div class="phs-prompt-desc">Navigate drug market entry and competition with targeted AI insights.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_call_center_monitor_image.png" alt="Call Center Monitor" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Call Center Monitor</div>
+          <div class="phs-prompt-full">Conversational Quality Monitor: AI Call Center Interaction Evaluator</div>
+          <div class="phs-prompt-desc">Evaluate and improve call center interactions with AI-driven analysis.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_finance_strategist_image.png" alt="Finance Strategist" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Finance Strategist</div>
+          <div class="phs-prompt-full">Intelligent Personal Finance Strategist (Secure & User-Centric)</div>
+          <div class="phs-prompt-desc">Take control of personal finances with secure, user-focused AI prompts.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_task_orchestrator_image.png" alt="Task Orchestrator" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Task Orchestrator</div>
+          <div class="phs-prompt-full">Interactive Task Orchestrator: Smart To-Do & Progress Dashboard</div>
+          <div class="phs-prompt-desc">Organize tasks and track progress with interactive AI dashboards.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_language_institute_manager_image.png" alt="Language Institute Manager" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Language Institute Manager</div>
+          <div class="phs-prompt-full">AI-Powered Language Institute Manager: Program & Student Operations</div>
+          <div class="phs-prompt-desc">Manage language programs and student operations with AI efficiency.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_labchain_monitor_image.png" alt="LabChain Monitor" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">LabChain Monitor</div>
+          <div class="phs-prompt-full">LabChain Monitor: Real-Time Sample Flow & Analytical Reporting AI</div>
+          <div class="phs-prompt-desc">Monitor lab sample flows and generate analytical reports in real time.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_wellness_architect_image.png" alt="Wellness Architect" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Wellness Architect</div>
+          <div class="phs-prompt-full">Wellness Architect: Client-Centric Fitness Needs & Program Designer</div>
+          <div class="phs-prompt-desc">Design personalized fitness and wellness programs for any client.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_investigation_engine_image.png" alt="Investigation Engine" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Investigation Engine</div>
+          <div class="phs-prompt-full">Deep Investigation Engine: AI for Journalistic Research & Analysis</div>
+          <div class="phs-prompt-desc">Empower research and analysis for journalism and investigations.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_paper_coauthor_image.png" alt="Paper Co-Author" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Paper Co-Author</div>
+          <div class="phs-prompt-full">Scholarly Paper Co-Author: Research Structuring & Academic Writing AI</div>
+          <div class="phs-prompt-desc">Collaborate on academic writing and research structuring with AI.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_content_generator_image.png" alt="Content Generator" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Content Generator</div>
+          <div class="phs-prompt-full">Precision Content Generator: Audience-Tuned Writing Assistant</div>
+          <div class="phs-prompt-desc">Generate tailored content for any audience or platform.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_curriculum_craft_ai_image.png" alt="Curriculum Craft AI" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Curriculum Craft AI</div>
+          <div class="phs-prompt-full">Curriculum Craft AI: Structured Textbook Writing Assistant</div>
+          <div class="phs-prompt-desc">Assist in writing and structuring textbooks and curricula with AI.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_visual_generator_image.png" alt="Visual Generator" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Visual Generator</div>
+          <div class="phs-prompt-full">Visual Intelligence Generator: Conceptual & Commercial Image Creator</div>
+          <div class="phs-prompt-desc">Create conceptual and commercial images with AI-driven prompts.</div>
+        </div>
+      </div>
+      <div class="phs-prompt-card">
+        <img src="prompt_midjourney_muse_image.png" alt="Midjourney Muse" class="phs-prompt-img">
+        <div class="phs-prompt-info">
+          <div class="phs-prompt-short">Midjourney Muse</div>
+          <div class="phs-prompt-full">Midjourney Muse: Therapeutic Art Prompt Generator for AI Expression</div>
+          <div class="phs-prompt-desc">Inspire creative and therapeutic art with AI-generated prompts.</div>
+        </div>
+      </div>
+    </div>
+    <div class="phs-prompts-ctas">
+      <button class="phs-btn phs-btn-primary" onclick="document.getElementById('orderPromptBtn').click()">Order Your Prompt</button>
+      <button class="phs-btn phs-btn-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Custom Requests</button>
+      <button class="phs-btn phs-btn-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+    </div>
+  </section>
+
+  <!-- Books Section -->
+  <section class="phs-section phs-books" id="books">
+    <h2 class="phs-section-title">Our eBooks</h2>
+    <div class="phs-books-grid">
+      <div class="phs-book-card">
+        <img src="ebook_mastering_prompt_engineering_image.png" alt="Mastering Prompt Engineering" class="phs-book-img">
+        <div class="phs-book-info">
+          <div class="phs-book-title">Mastering Prompt Engineering: A Practical Manual for Advanced Non-Coders</div>
+          <div class="phs-book-author">By Davor Mulatić</div>
+          <div class="phs-book-desc">Unlock the full potential of AI language models without writing a single line of code. This practical manual provides advanced techniques and strategies for crafting powerful prompts. Elevate your non-technical skills to achieve expert-level results in various AI applications.</div>
+        </div>
+      </div>
+      <div class="phs-book-card">
+        <img src="ebook_ai_teachers_companion_image.png" alt="The AI Teacher's Companion" class="phs-book-img">
+        <div class="phs-book-info">
+          <div class="phs-book-title">The AI Teacher's Companion: Integrating Artificial Intelligence in Your Classroom</div>
+          <div class="phs-book-author">By Prompt Hero Studio</div>
+          <div class="phs-book-desc">Revolutionize your teaching methods by seamlessly integrating artificial intelligence into your classroom. Discover practical tools and strategies to enhance student engagement, personalize learning, and streamline administrative tasks. This guide empowers educators to confidently navigate the future of AI in education.</div>
+        </div>
+      </div>
+      <div class="phs-book-card">
+        <img src="ebook_ai_for_business_image.png" alt="AI For Business and Personal Excellence" class="phs-book-img">
+        <div class="phs-book-info">
+          <div class="phs-book-title">AI For Business and Personal Excellence</div>
+          <div class="phs-book-author">By Davor Mulatić</div>
+          <div class="phs-book-desc">Leverage the power of Artificial Intelligence to achieve new heights in your professional and personal life. This book offers actionable insights and strategies for applying AI to boost productivity, make smarter decisions, and foster innovation. Transform your approach to challenges and unlock your full potential.</div>
+        </div>
+      </div>
+    </div>
+    <div class="phs-books-cta">
+      <button class="phs-btn phs-btn-secondary" onclick="window.open('https://www.paypal.com/ncp/payment/FKMN5XAS97TEY','_blank')">Buy eBook</button>
+      <button class="phs-btn phs-btn-link" onclick="document.getElementById('orderPromptBtn').click()">Order Your Prompt</button>
+      <button class="phs-btn phs-btn-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Custom Requests</button>
+      <button class="phs-btn phs-btn-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+    </div>
+    <div class="phs-cta-bar">
+      <span>Ready to transform your AI interactions?<br>Get started with our expert prompt engineering services today.</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="phs-section phs-about" id="about">
+    <h2 class="phs-section-title">Behind Prompt Hero Studio</h2>
+    <div class="phs-about-text">
+      Prompt Hero Studio is powered by a team of seasoned professionals with decades of combined experience in business strategy, technical innovation, and operational excellence. Our diverse expertise allows us to approach every challenge from multiple angles—delivering practical, high-impact solutions tailored to the unique needs of each client. What sets us apart is not just our skillset, but our deep understanding of how modern businesses think, grow, and adapt. We’ve walked in those shoes, solved complex problems, and led transformative initiatives across industries. At Prompt Hero Studio, we don’t just create prompts or digital products—we craft tools that unlock potential, spark innovation, and support sustainable success. Our mission is simple: to empower creators and businesses with intelligent solutions that truly make a difference.
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="phs-footer" role="contentinfo">
+    <div class="phs-footer-inner">
+      <div class="phs-footer-left">
+        © 2025 Prompt Hero Studio. All rights reserved. Unauthorized copying, distribution, or use of any material from this site without express written permission from Prompt Hero Studio is strictly prohibited.
+      </div>
+      <div class="phs-footer-right">
+        <a href="https://ko-fi.com/prompthero" target="_blank" rel="noopener" aria-label="Support us on Ko-fi">
+          <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="5"/><circle cx="8" cy="12" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
