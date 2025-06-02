@@ -643,11 +643,6 @@ html, body {
   background: #fff0f0 !important;
 }
 
-/* Lazy loading for images */
-img:not(.phs-logo):not(.phs-favicon) {
-  loading: lazy;
-}
-
 /* Scroll to top button */
 #phs-scroll-top {
   position: fixed;
