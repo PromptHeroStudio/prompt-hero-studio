@@ -52,6 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
           document.getElementById('orderPromptSuccess').textContent = 'Thank you! Your prompt creation request has been submitted.';
           document.getElementById('orderPromptSuccess').style.display = 'block';
           orderPromptForm.reset();
+          // Redirect to PayPal after short delay
+          setTimeout(function() {
+            window.open('https://www.paypal.com/ncp/payment/HFKNMHW2YQD74', '_blank');
+          }, 1200);
         }, function(error) {
           alert('There was an error sending your order. Error details: ' + (error && error.text ? error.text : JSON.stringify(error)));
         });
